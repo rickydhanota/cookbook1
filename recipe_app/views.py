@@ -19,6 +19,9 @@ def cookbook(request):
 def index(request):
     return render(request, 'index.html')
 
+def register_form(request):
+    return render (request, 'registration.html')
+
 def registration(request):
     errors = User.objects.basic_validator(request.POST, 'registration')
     if len(errors)>0:
@@ -35,7 +38,7 @@ def registration(request):
         return redirect('/registered')
 
 def registered(request):
-    return redirect('/')
+    return redirect('/sign_in')
 
 def login(request):
     errors = User.objects.basic_validator(request.POST, 'login')
