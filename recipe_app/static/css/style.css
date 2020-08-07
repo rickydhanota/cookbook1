@@ -1,0 +1,84 @@
+.welcome, .recipe_info{
+    background-image: url("/static/cut_vegetables.JPG");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .dessert, .dessert_info{
+
+  background-image: url("/static/dessert.jpeg");
+  background-size: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  
+  
+  }
+
+  .best{
+
+    background-image: url("/static/dessert.jpeg");
+    background-size: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+    
+    }
+
+  /* .dessert, .best, .dessert_info{
+
+    background-image: url("/static/cakeslice.jpg");
+    background-size: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    
+    
+    } */
+  
+
+
+  .heading {
+    color: darkorchid;
+    font-size: 40px;
+  }
+
+  .info {
+    color: red;
+    font-size: 20px;
+  }
+
+  .text {
+    color: yellow;
+
+  }
+  
+  
+/* .welcome{
+    /* The image used */
+  
+    /* Full height */
+  /* height: 100%; */
+  
+    /* Center and scale the image nicely */
+  /* background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+/* } */ 
+
+  /* .dessert{
+    /* The image used */
+  
+    /* Full height */
+    /* height: 100%; */
+  
+    /* Center and scale the image nicely */
+    /* background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  } */ 
+
+
