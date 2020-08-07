@@ -6,6 +6,16 @@ from .models import *
 
 ##############################################################################################################
 
+def cookbook(request):
+    if 'userid' not in request.session:
+        return render(request,'cookbook.html')
+    else:
+        user = User.objects.get(id = request.session['userid'])
+        context = {
+            'user':user,
+        }
+    return render(request, 'cookbook.html',context)
+
 def index(request):
     return render(request, 'index.html')
 
@@ -42,12 +52,6 @@ def login(request):
                 return redirect("/cookbook") #redirect to success route
         # return redirect('/')
 
-def cookbook(request):
-    user = User.objects.get(id = request.session['userid'])
-    context = {
-        'user':user,
-    }
-    return render(request, 'cookbook.html',context)
 
 def logout(request):
     request.session.flush()
