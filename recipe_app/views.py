@@ -377,13 +377,13 @@ def add_review_to_dessert(request):
     return render(request,'add_review_ajax.html',context)
 
 
-def delete_review(request):
+def delete_review(request, id):
     if 'userid' not in request.session:
         return redirect('/')
     user = User.objects.get(id=request.session['userid'])
     recipe = Recipes.objects.get(id=request.POST["recipe_id"])
     print(request.POST)
-    review = Reviews.objects.get(id=request.POST["review_id"])
+    review = Reviews.objects.get(id=id)
     review.delete()
     # return redirect(f'/recipe/info/{recipe_id}')
     context = {
