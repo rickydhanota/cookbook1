@@ -6,178 +6,178 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/recipe_info.css">
 
   
     </head>
     <body class="recipe_info bg-light">
         <div class="container">
-            <div class="row">
-                <div class="col-6 px-3">
-                    <div class="form-group row">
-                        <em><h1 class="text">Welcome {{user.first_name}}!</h1></em>
-                    </div>
+            <div class="form-group row">
+                <em><h1 class="text">Welcome {{user.first_name}}!</h1></em>
+            </div>
 
-                    <div class="col-12">
-                        {% if messages %}
-                            <br>
-                            {% for message in messages %}
-                                <ul>   
-                                    <h5><li class="text text-danger">{{ message }}</li></h5>
-                                </ul>    
-                            {% endfor %}
-                        {% endif %}
-               
-                        <img src="{{recipe.image.url}}" width="500" height="500">
-                    </div>
-                    <div class="col-12">
-                        <br>
-                        <em><strong><h1>{{recipe.name}}</h1></strong></em>
-                        <br><br>
-                        <em><h4>Average rating: {{rating}} stars</h4></em>
-                        <br>
-                        <em><h6>Created by: {{recipe.owner.first_name}} {{recipe.owner.last_name}}</h6></em>
-                        <br>
-                        <em><u><h4 class="heading">Description: </h4></u></em>
-                        <br>
-                        {% for summary in summaries %}
-                            <b><p class="info">{{ summary }}</p></b>
-                            <br>
-                        {% endfor %}
-                        <em><u><h4 class="heading">Ingredients: </h4></u></em>
-                        <br>
-                        {% for ingredient in ingredients %}
-                            <b><p class="info">{{ ingredient }}</p></b>
-                            <br>
-                        {% endfor %}
-                        <br>
-                        <em><u><h4 class="heading">Steps: </h4></u></em>
-                        <br>
-                        {% for step in steps %}
-                            <b><p class="info">{{ step }}</p></b>
-                            <br>
-                        {% endfor %}
-                        {% if user.id == recipe.owner.id %}
-                            <br>
-                            <a class="btn btn-danger" href="/recipe/delete/{{recipe.id}}" role="button">Delete Recipe</a>
-                            <a class="btn btn-success" href="/recipe/edit/{{recipe.id}}" role="button">Edit Recipe</a>
-
-                        {% endif %}
-                    </div>
-
-
-
+            <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="/cookbook">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="/founders">Founders</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="#">Careers</a>
+                    </li>
+        
+                    {% if 'userid' not in request.session %}
+                      <li class="nav-item active">
+                        <a class="nav-link text-white" href="sign_in">Sign in</a>
+                      </li>
+                    {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link text-white" href="/logout">Logout</a>
+                    </li>
+                    {% endif %}
+        
+                  </ul>
+                  <form action="search" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
                 </div>
+              </nav><br>
 
-                <div class="col-6">
-                    <div class="col-12">
-                    {% comment %} <div class="col-5"> {% endcomment %}
-                        <nav class="navbar navbar-expand-lg rounded navbar-light bg-secondary">
-                            <span class="border border-dark"></span>
-                                <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/welcome">Home</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/founders">Founders</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                         <a class="nav-link text-white" href="#">Careers</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                         <a class="nav-link text-white" href="/userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link text-white" href="/logout">Logout</a>
-                                    </li>
-
-                                </ul>
-                                </div>
-                            </span>
-                        </nav>
-
-                    </div>
-                    <br><br>
-                    <div>
-                        <form action="/review/add" method="post" id="review" review="{{recipe.id}}">
+            <div class="left_side">
+                <div class="col-12">
+                    <img src="{{recipe.image.url}}" width="500" height="500">
+                    <!-- Might want to try doing auto here -->
+                </div>
     
-                            {% csrf_token %}
-
-                            <div class="form-group">
-                                <em><h4 class="text">Add Review: </h4></em>
-                                <br>
-                                <textarea class="form-control" id="content" name="Review" rows="3"></textarea>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <label for="Rating">Rating:</label>
-                                    <select name="Rating" id="Rating" class="content">
-                                        <option value="1">1 - Terrible</option>
-                                        <option value="2">2 - Bad</option>
-                                        <option value="3">3 - Marginal</option>
-                                        <option value="4">4 - Good</option>
-                                        <option value="5">5 - Excellent</option>                            
-                                    </select>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit Review</button>
-                            <input name="recipe_id" type="hidden" value="{{recipe.id}}">  
-
-                        </form>
-                    </div>
+                {% if messages %}
                     <br>
-                    {% comment %} <div class="col-12"> {% endcomment %}
-                        <u><em><h3 class="text text-center">Reviews:</h3></em></u>
+                    {% for message in messages %}
+                        <ul>   
+                            <h5><li class="text text-danger">{{ message }}</li></h5>
+                        </ul>    
+                    {% endfor %}
+                {% endif %}
+    
+                <div class="col-12">
+                    <br>
+                    <em><strong><h1>{{recipe.name}}</h1></strong></em>
+                    <br><br>
+                    <em><h4>Average rating: {{rating}} stars</h4></em>
+                    <br>
+                    <em><h6>Created by: {{recipe.owner.first_name}} {{recipe.owner.last_name}}</h6></em>
+                    <br>
+                    <em><u><h4 class="heading">Description: </h4></u></em>
+                    <br>
+                    {% for summary in summaries %}
+                        <b><p class="info">{{ summary }}</p></b>
                         <br>
-
-                        <div class="form-group row" id="reviews">
-                            {% for review in Reviews %}
-                                <br><br>
-                                {% comment %} REPLACE THIS BLOCK  {% endcomment %}
-                                <div class="card-deck col-12 bg-dark-rounded ajax" id="{{review.id}}">
-                                    <br><br><br><br>
-                                    <div class="card mb-4 bg-light rounded border border-dark">
-
-                                        <div class="col-12">
-                                            <div class="col-12">
-                                                <b>Rating: {{review.rating}} stars</b>
-                                                <br><br>
-                                                <strong>{{review.reviewer.first_name}}</strong> says: <em>{{review.content}}</em>
-                                                <br><br>
-                                                <em>Posted On: {{review.created_at}}</em>
-                                                <br><br>
-                                                {% if user.id == review.reviewer.id %}
-                                                    <div class="form-group row">
-                                                        <div class="col-12">
-                                                            <form action="/review/delete" method="POST" class="delete_review" review="{{review.id}}">
-                                                                {% csrf_token %}
-                                                                <button type="submit" class="btn btn-danger">Delete Review</button>
-                                                                <input name="recipe_id" type="hidden" value="{{recipe.id}}">  
-                                                                {% comment %} <input name="review_id" type="hidden" value="{{review.id}}">   {% endcomment %}
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                {% endif %}
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br><br>
-                            {% endfor %}
-                        </div>
-                    {% comment %} </div> {% endcomment %}
+                    {% endfor %}
+                    <em><u><h4 class="heading">Ingredients: </h4></u></em>
+                    <br>
+                    {% for ingredient in ingredients %}
+                        <b><p class="info">{{ ingredient }}</p></b>
+                        <br>
+                    {% endfor %}
+                    <br>
+                    <em><u><h4 class="heading">Steps: </h4></u></em>
+                    <br>
+                    {% for step in steps %}
+                        <b><p class="info">{{ step }}</p></b>
+                        <br>
+                    {% endfor %}
+                    {% if user.id == recipe.owner.id %}
+                        <br>
+                        <a class="btn btn-danger" href="/recipe/delete/{{recipe.id}}" role="button">Delete Recipe</a>
+                        <a class="btn btn-success" href="/recipe/edit/{{recipe.id}}" role="button">Edit Recipe</a>
+    
+                    {% endif %}
                 </div>
             </div>
 
+                        
+            <div class="right_side">
+                <form action="/review/add" method="post" id="review" review="{{recipe.id}}">
+
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <em><u><h4 class="text">Add Review: </h4></u></em>
+                        <br>
+                        <textarea class="form-control" id="content" name="Review" rows="2" cols="55"></textarea>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <label for="Rating">Rating:</label>
+                            <select name="Rating" id="Rating" class="content">
+                                <option value="1">1 - Terrible</option>
+                                <option value="2">2 - Bad</option>
+                                <option value="3">3 - Marginal</option>
+                                <option value="4">4 - Good</option>
+                                <option value="5">5 - Excellent</option>                            
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                    <input name="recipe_id" type="hidden" value="{{recipe.id}}">  
+                </form>
+                    <br><br>
+                <u><em><h3 class="text text-left">Reviews:</h3></em></u>
+                <br>
+
+                <div class="form-group row" id="reviews">
+                    {% for review in Reviews %}
+                        <br><br>
+                        <div class="card-deck col-12 bg-dark-rounded ajax" id="{{review.id}}">
+                            <br>
+                            <div class="card mb-4 bg-light rounded border border-dark">
+                                <b>Rating: {{review.rating}} stars</b>
+                                <br>
+                                <strong>{{review.reviewer.first_name}}</strong> says: <em>{{review.content}}</em>
+                                <br>
+                                <em>Posted On: {{review.created_at}}</em>
+                                <br>
+                                    {% if user.id == review.reviewer.id %}
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <form action="/review/delete/{{review.id}}" method="POST" class="delete_review" review="{{review.id}}">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-danger">Delete Review</button>
+                                                    <input name="recipe_id" type="hidden" value="{{recipe.id}}">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                <br>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <footer class="my-5 pt-5 light text-muted text-center text-center">
+                    {% comment %} <ul> {% endcomment %}
+                    <a class="text-black" href="#">Advertisements</a>  <a href="privacypolicy">Private Policy</a> <a href="#">Help</a> <a href="#">About</a> <a href="terms">Terms of Service</a>
+                    <br>
+                    Copyright &copy;  2020
+                    {% comment %} </ul> {% endcomment %}
+                </footer>
+            </div>
+
         </div>
-        <footer class="my-5 pt-5 light text-muted text-center text-center">
-            <ul>
-                <li><a class="text-black" href="/advertisements">Advertisements</a>  <a href="/policy">Private Policy</a> <a href="/help">Help</a> <a href="/about">About</a> <a href="/policy">Visitor Agreement</a></li>
-                <li>Copyright &copy;  2020</li>
-            </ul>
-        </footer>
+
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="{% static 'script.js' %}"></script>
     </body>
