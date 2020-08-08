@@ -1,84 +1,43 @@
-.welcome, .recipe_info{
-    background-image: url("/static/cut_vegetables.JPG");
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+#navbar{
+  background: rgb(33,33,33);
+  background: linear-gradient(360deg, rgba(33,33,33,1) 0%, rgba(52,52,52,1) 50%, rgba(33,33,33,1) 100%);
+  border-radius: 5px;
+}
+#actions{
+  display: inline;
+}
+#filter_bar{
+  display: inline;
+  width: 270px;
+  height: 41px;
+  margin-left: 10px;
+}
+#create_recipe{
+  display: inline;
+}
+#clear_recipe{
+  padding: 5px 10px 5px 10px;
+  margin-left: 10px;
+}
+#filter_search{
+  padding: 5px 10px 5px 10px;
+  margin-left: 10px;
+}
 
-  .dessert, .dessert_info{
+form{
+  display: inline;
+}
+.container{
+  background-image:url('../background2.jpg');
 
-  background-image: url("/static/dessert.jpeg");
-  background-size: 100%;
-  height: 100%;
-  background-size: cover;
   background-position: center;
-  
-  
-  }
-
-  .best{
-
-    background-image: url("/static/dessert.jpeg");
-    background-size: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    
-    
-    }
-
-  /* .dessert, .best, .dessert_info{
-
-    background-image: url("/static/cakeslice.jpg");
-    background-size: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    
-    
-    } */
-  
-
-
-  .heading {
-    color: darkorchid;
-    font-size: 40px;
-  }
-
-  .info {
-    color: red;
-    font-size: 20px;
-  }
-
-  .text {
-    color: yellow;
-
-  }
-  
-  
-/* .welcome{
-    /* The image used */
-  
-    /* Full height */
-  /* height: 100%; */
-  
-    /* Center and scale the image nicely */
-  /* background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
-/* } */ 
-
-  /* .dessert{
-    /* The image used */
-  
-    /* Full height */
-    /* height: 100%; */
-  
-    /* Center and scale the image nicely */
-    /* background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  } */ 
-
-
+  background-size: cover;
+  /* background-color: #dbd7d6; */
+}
+footer{
+  padding-bottom: 20px;
+}
+footer a{
+  color: black;
+}
