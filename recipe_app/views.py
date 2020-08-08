@@ -61,11 +61,14 @@ def logout(request):
     return redirect('/')
 
 def founders(request):
-    user = User.objects.get(id = request.session['userid'])
-    context = {
-        'user':user,
-    }
-    return render(request, "founders.html", context)
+    if 'user.id' not in request.session:
+        return render(request, "founders.html")
+    else:
+        user = User.objects.get(id = request.session['userid'])
+        context = {
+            'user':user,
+        }
+        return render(request, "founders.html", context)
 
 def privacypolicy(request):
     user = User.objects.get(id = request.session['userid'])
@@ -115,32 +118,32 @@ def deleteprofilepicture(request):
 
 def welcome(request):
     if 'userid' not in request.session:
-        return redirect('/')
+        return render(request,'welcome.html')
+    else:
+        user = User.objects.get(id=request.session['userid'])
+        recipes = Recipes.objects.all()
+        all_reviews = []
+        all_recipes = []
+        sorted_recipes = []
+        for recipe in recipes:
+            if recipe.is_dessert == False:
+                all_recipes.append(recipe)
+                all_reviews.append(len(recipe.reviews_of_recipe.all()))
+        all_reviews = sorted(all_reviews, reverse=True)
+        i = 0
+        for i in range(len(all_reviews)):
+            for recipe in all_recipes:
+                if (all_reviews[i] == len(recipe.reviews_of_recipe.all())):
+                    sorted_recipes.append(recipe)
+        # for recipe in sorted_recipes:
+        #     print(len(recipe.reviews_of_recipe.all()))
+        top_recipes = sorted_recipes
 
-    user = User.objects.get(id=request.session['userid'])
-    recipes = Recipes.objects.all()
-    all_reviews = []
-    all_recipes = []
-    sorted_recipes = []
-    for recipe in recipes:
-        if recipe.is_dessert == False:
-            all_recipes.append(recipe)
-            all_reviews.append(len(recipe.reviews_of_recipe.all()))
-    all_reviews = sorted(all_reviews, reverse=True)
-    i = 0
-    for i in range(len(all_reviews)):
-        for recipe in all_recipes:
-            if (all_reviews[i] == len(recipe.reviews_of_recipe.all())):
-                sorted_recipes.append(recipe)
-    # for recipe in sorted_recipes:
-    #     print(len(recipe.reviews_of_recipe.all()))
-    top_recipes = sorted_recipes
-
-    context = {
-        "user": user,
-        "Top_Recipes": top_recipes
-    }
-    return render(request,'welcome.html', context)
+        context = {
+            "user": user,
+            "Top_Recipes": top_recipes
+        }
+        return render(request,'welcome.html', context)
 
 def filter_recipe(request):
     if 'userid' not in request.session:
