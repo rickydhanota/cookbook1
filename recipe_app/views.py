@@ -14,7 +14,7 @@ def cookbook(request):
         context = {
             'user':user,
         }
-    return render(request, 'cookbook.html',context)
+    return render(request, 'welcome.html',context)
 
 def index(request):
     return render(request, 'index.html')
@@ -35,7 +35,7 @@ def registration(request):
         
         User.objects.create(first_name = request.POST['first_name'], last_name = request.POST['last_name'], email = request.POST['email'], password = pw_hash)
 
-        return redirect('/registered')
+        return redirect('/')
 
 def registered(request):
     return redirect('/sign_in')
@@ -52,7 +52,7 @@ def login(request):
             logged_user = user[0]
             if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
                 request.session['userid'] = logged_user.id
-                return redirect("/cookbook") #redirect to success route
+                return redirect("/welcome") #redirect to success route
         # return redirect('/')
 
 
