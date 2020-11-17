@@ -3,6 +3,7 @@
   background: linear-gradient(360deg, rgba(33,33,33,1) 0%, 
   rgba(52,52,52,1) 50%, rgba(33,33,33,1) 100%);
   border-radius: 5px;
+  margin-top: 10px;
 }
 #actions{
   display: inline;
@@ -37,7 +38,7 @@ form{
   /* background-color: #dbd7d6; */
 }
 footer{
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 footer a{
   color: black;
