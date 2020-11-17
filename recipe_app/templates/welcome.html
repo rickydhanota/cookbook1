@@ -15,41 +15,41 @@
         <div class="recipes col-12">
             <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 ">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                  <span class="navbar-toggler-icon"></span>
                 </button>
-      
+              
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link text-white" href="/welcome">Home</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-white" href="/founders">Founders</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-white" href="#">Careers</a>
-                        </li>
-
-                        {% if 'user' not in request.session %}
-                        <li class="nav-item active">
-                          <a class="nav-link text-white" href="sign_in">Sign in</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item active">
-                            <a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-white" href="/logout">Logout</a>
-                        </li>
-                        {% endif %}
-
-                    </ul>
-                        <form action="search" class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="/">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="/founders">Founders</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="#">Careers</a>
+                    </li>
+        
+                    {% if 'userid' not in request.session %}
+                      <li class="nav-item active">
+                        <a class="nav-link text-white" href="sign_in">Sign in</a>
+                      </li>
+                    {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="userprofile/{{user.id}}">{{user.first_name}} {{user.last_name}}</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link text-white" href="/logout">Logout</a>
+                    </li>
+                    {% endif %}
+        
+                  </ul>
+                  <form action="search" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
                 </div>
-            </nav>      
+              </nav>      
         </div>
 
                 <div id="actions" class="col-2">
