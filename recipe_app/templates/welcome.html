@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link text-white" href="/cookbook">Home</a>
+                            <a class="nav-link text-white" href="/welcome">Home</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link text-white" href="/founders">Founders</a>
@@ -30,7 +30,7 @@
                             <a class="nav-link text-white" href="#">Careers</a>
                         </li>
 
-                        {% if 'userid' not in request.session %}
+                        {% if 'user' not in request.session %}
                         <li class="nav-item active">
                           <a class="nav-link text-white" href="sign_in">Sign in</a>
                         </li>

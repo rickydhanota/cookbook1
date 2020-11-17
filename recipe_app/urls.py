@@ -11,7 +11,6 @@ urlpatterns = [
     path('registration', views.registration),
     path('registered', views.registered),
     path('login', views.login),
-    path('cookbook', views.cookbook),
     path('logout', views.logout),
     path('founders', views.founders),
     path('privacypolicy', views.privacypolicy),
